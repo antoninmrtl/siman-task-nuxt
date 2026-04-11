@@ -1,5 +1,4 @@
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
 const nouvelleTache = ref('')
 const taches = ref([])
 
