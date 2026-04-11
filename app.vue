@@ -31,25 +31,31 @@ watch(
     taches, (nouvelleValeur) => {
       localStorage.setItem('mesTaches', JSON.stringify(nouvelleValeur))
     },
-    { deep: true },
+    {deep: true},
 )
 </script>
 
 <template>
-  <main>
-    <h1>Siman-Task</h1>
-    <hr />
-    <UInput v-model="nouvelleTache" />
-    <UButton type="submit" @click="ajouterTache">Add Task</UButton>
-    <h3>Remining tasks : {{ tachesRestantes }}</h3>
-    <ul>
-      <li v-for="(tache, index) in taches" :key="index">
-        <UCheckbox v-model="tache.termine" />
-        <span :class="{ fait: tache.termine }">{{ tache.texte }}</span>
-        <UButton type="submit" @click="supprimerTache(index)">Delete task</UButton>
-      </li>
-    </ul>
-  </main>
+  <UContainer class="max-w-xl py-10">
+    <UCard>
+      <h1>Siman-Task</h1>
+      <hr/>
+      <div class="flex gap-2 mb-6">
+        <UInput class="w-full" v-model="nouvelleTache"/>
+        <UButton type="submit" @click="ajouterTache">Add Task</UButton>
+      </div>
+      <h3>Remining tasks : {{ tachesRestantes }}</h3>
+      <ul class="list-none p-0">>
+        <li class="flex items-center justify-between mb-3" v-for="(tache, index) in taches" :key="index">
+          <div class="flex items-center gap-3">
+            <UCheckbox v-model="tache.termine" />
+            <span :class="{ fait: tache.termine }">{{ tache.texte }}</span>
+          </div>
+          <UButton type="submit" @click="supprimerTache(index)">Delete task</UButton>
+        </li>
+      </ul>
+    </UCard>
+  </UContainer>
 </template>
 
 <style scoped>
