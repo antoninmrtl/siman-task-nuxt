@@ -39,14 +39,14 @@ watch(
   <main>
     <h1>Siman-Task</h1>
     <hr />
-    <input v-model="nouvelleTache" type="text" />
-    <button type="submit" @click="ajouterTache">Add Task</button>
+    <UInput v-model="nouvelleTache" />
+    <UButton type="submit" @click="ajouterTache">Add Task</UButton>
     <h3>Remining tasks : {{ tachesRestantes }}</h3>
     <ul>
       <li v-for="(tache, index) in taches" :key="index">
-        <input type="checkbox" v-model="tache.termine" />
+        <UCheckbox v-model="tache.termine" />
         <span :class="{ fait: tache.termine }">{{ tache.texte }}</span>
-        <button type="submit" @click="supprimerTache(index)">Delete task</button>
+        <UButton type="submit" @click="supprimerTache(index)">Delete task</UButton>
       </li>
     </ul>
   </main>
