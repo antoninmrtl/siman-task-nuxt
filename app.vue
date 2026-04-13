@@ -21,4 +21,5 @@ watch(
 
 <template>
   <NuxtPage />
+  <UNotifications/>
 </template>

@@ -5,6 +5,7 @@ const value = ref('Basse')
 const taches = useState('taches-globales', () => [])
 const filtreActuel = ref('Toutes')
 const erreurSaisie = ref('')
+const toast = useToast()
 
 function ajouterTache() {
   if (nouvelleTache.value.trim() !== '' && nouvelleTache.value.length >= 3) {
@@ -12,6 +13,11 @@ function ajouterTache() {
       texte: nouvelleTache.value.trim(),
       termine: false,
       priorite: value.value,
+    })
+    toast.add({
+      title: 'Tâche ajouté avec success',
+      description: `Tâche ajoutée : ${nouvelleTache.value}.`,
+      icon: 'i-lucide-arrow-right'
     })
     erreurSaisie.value= ''
   }else {
@@ -26,6 +32,12 @@ function supprimerTache(indexDansFiltre) {
   const indexReel = taches.value.indexOf(tacheASupprimer)
   if (indexReel !== -1) {
     taches.value.splice(indexReel, 1)
+    toast.add({
+      title: 'Tâche supprimé avec success',
+      description: `Tâche suprimée : ${nouvelleTache.value}.`,
+      icon: 'i-lucide-arrow-right',
+      color:"red"
+    })
   }
 }
 

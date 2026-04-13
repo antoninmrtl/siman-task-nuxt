@@ -5,6 +5,7 @@ const itemsSelect = ref(['Basse', 'Normal', 'Haute'])
 const value = ref('Basse')
 const taches = useState('taches-globales', () => [])
 const laTache = computed(() => taches.value[route.params.id])
+const toast = useToast()
 </script>
 
 <template>
