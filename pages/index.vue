@@ -33,17 +33,14 @@ const tachesRestantes = computed(() => {
         <UButton type="submit" @click="ajouterTache">Add Task</UButton>
       </div>
       <h3>Remining tasks : {{ tachesRestantes }}</h3>
-      <ul class="list-none p-0">>
-        <li class="flex items-center justify-between mb-3" v-for="(tache, index) in taches" :key="index">
-          <div class="flex items-center gap-3">
-            <UCheckbox v-model="tache.termine" />
-            <span :class="{ fait: tache.termine }">{{ tache.texte }}</span>
-          </div>
-          <ULink :to="`/taches/${index}`" class="hover:text-primary">
-            {{ tache.texte }}
-          </ULink>
-          <UButton type="submit" @click="supprimerTache(index)">Delete task</UButton>
-        </li>
+      <ul class="space-y-3">
+        <TacheItem
+            v-for="(tache, index) in taches"
+            :key="index"
+            :tache="tache"
+            :index="index"
+            @supprimer="supprimerTache"
+        />
       </ul>
     </UCard>
   </UContainer>
