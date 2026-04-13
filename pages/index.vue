@@ -4,14 +4,18 @@ const itemsSelect = ref(['Basse', 'Normal', 'Haute'])
 const value = ref('Basse')
 const taches = useState('taches-globales', () => [])
 const filtreActuel = ref('Toutes')
+const erreurSaisie = ref('')
 
 function ajouterTache() {
-  if (nouvelleTache.value.trim() !== '') {
+  if (nouvelleTache.value.trim() !== '' && nouvelleTache.value.length >= 3) {
     taches.value.push({
       texte: nouvelleTache.value.trim(),
       termine: false,
       priorite: value.value,
     })
+    erreurSaisie.value= ''
+  }else {
+    erreurSaisie.value = 'Une tâche ne peut-être vide ou doit être au moins de 3 caractères'
   }
   nouvelleTache.value = ''
   value.value = 'Basse'
@@ -57,6 +61,7 @@ const tachesFiltrees = computed(() => {
         <USelect class="w-full" v-model="value" :options="itemsSelect"/>
         <UButton type="submit" @click="ajouterTache">Add Task</UButton>
       </div>
+      <h3 class="text-red-500">{{erreurSaisie}}</h3>
       <h3>Remining tasks : {{ tachesRestantes }}</h3>
       <ul class="space-y-3">
         <TacheItem
