@@ -10,7 +10,9 @@ onMounted(() => {
 
 watch(
     taches, (nouvelleValeur) => {
-      localStorage.setItem('mesTaches', JSON.stringify(nouvelleValeur))
+      if (import.meta.client) {
+        localStorage.setItem('mesTaches', JSON.stringify(nouvelleValeur))
+      }
     },
     {deep: true},
 )
