@@ -1,6 +1,6 @@
 <script setup>
 const nouvelleTache = ref('')
-const taches = ref([])
+const taches = useState('taches-globales', () => [])
 
 function ajouterTache() {
   if (nouvelleTache.value.trim() !== '') {
@@ -20,19 +20,7 @@ const tachesRestantes = computed(() => {
   return taches.value.filter((tache) => tache.termine === false).length
 })
 
-onMounted(() => {
-  let data = localStorage.getItem('mesTaches')
-  if (data) {
-    taches.value = JSON.parse(data)
-  }
-})
 
-watch(
-    taches, (nouvelleValeur) => {
-      localStorage.setItem('mesTaches', JSON.stringify(nouvelleValeur))
-    },
-    {deep: true},
-)
 </script>
 
 <template>
