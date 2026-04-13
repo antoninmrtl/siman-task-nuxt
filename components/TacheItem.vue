@@ -13,6 +13,8 @@ const emit = defineEmits(['supprimer'])
       <UCheckbox v-model="tache.termine" />
       <NuxtLink :to="`/taches/${index}`" :class="{ 'line-through text-gray-400': tache.termine, 'hover:text-blue-500': true }">
         {{ tache.texte }}
+
+      <UBadge :class="{'bg-red-500 text-white' : tache.priorite == 'Haute', 'bg-blue-500' : tache.priorite == 'Normal'}">{{ tache.priorite }}</UBadge>
       </NuxtLink>
     </div>
 
